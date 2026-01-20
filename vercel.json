@@ -1,28 +1,19 @@
-
-### **`vercel.json` - إعدادات Vercel:**
-
-```json
 {
-  "functions": {
-    "api/route.py": {
-      "runtime": "python3.9",
-      "memory": 1024,
-      "maxDuration": 10
+  "builds": [
+    {
+      "src": "api/route.py",
+      "use": "@vercel/python"
     }
-  },
-  "rewrites": [
+  ],
+  "routes": [
     {
-      "source": "/api/(.*)",
-      "destination": "/api/route.py"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/api/route.py"
+      "src": "/(.*)",
+      "dest": "/api/route.py"
     }
   ],
   "headers": [
     {
-      "source": "/(.*)",
+      "source": "/api/(.*)",
       "headers": [
         {
           "key": "Access-Control-Allow-Origin",
@@ -39,4 +30,4 @@
       ]
     }
   ]
-}
+        }
